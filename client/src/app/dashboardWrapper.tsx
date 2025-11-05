@@ -2,6 +2,7 @@
 
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
+import AuthProvider from "./authProvider";
 import StoreProvider, { useAppSelector } from "./redux";
 import { useEffect } from "react";
 
@@ -37,9 +38,11 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
 const DashboardWrapper = ({ children }: { children: React.ReactNode }) => {
 	return (
-		<StoreProvider>
-			<DashboardLayout>{children}</DashboardLayout>;
-		</StoreProvider>
+		<AuthProvider>
+			<StoreProvider>
+				<DashboardLayout>{children}</DashboardLayout>;
+			</StoreProvider>
+		</AuthProvider>
 	);
 };
 
